@@ -1,0 +1,21 @@
+version: '3.8'
+
+services:
+  irrigation:
+    image: python:3.9 
+    environment:
+      - PYTHONUNBUFFERED=1
+    build:
+      context: .
+      dockerfile: Dockerfile 
+    networks:
+      - home-server
+    container_name: irrigation
+    working_dir: /app
+    volumes:
+      - ./:/app  # Mount the current directory to /app in the container
+    #command: python irrigation.py  # Command to run your script
+
+networks:
+  home-server:
+    external: true 
